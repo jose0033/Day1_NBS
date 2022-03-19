@@ -2,14 +2,9 @@
 from flask import Flask
 
 
-# In[2]:
 
 
 app = Flask(__name__)
-
-
-# In[3]:
-
 
 from flask import request, render_template
 import joblib 
@@ -26,17 +21,8 @@ def index():
         return(render_template("index.html", result=s))
     else:
         return(render_template("index.html", result="No Input"))
-
-
-# In[ ]:
-
-
 if __name__ =="__main__":
     app.run()
-
-
-# In[ ]:
-
 
 
 
