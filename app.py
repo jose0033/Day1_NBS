@@ -1,25 +1,38 @@
 from flask import Flask
-app=Flask(__name__)
+
+# In[2]:
+
+
+app = Flask(__name__)
+
+
 
 from flask import request, render_template
 import joblib
 
+
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        rates=request.form.get("rates")
+        rates = request.form.get("rates")
         print(rates)
-        model = joblib.load('DBS')
+        model = joblib.load("DBS")
         pred = model.predict([[float(rates)]])
         print(pred)
-        s = "Predicted DBS Share Price: " + str(pred)
-        print(s)
-        return(render_template("index.html", results=s))
-
+        s = "The predicted DBS share price is " + str(pred[0][0])
+        return (render_template("index.html", result=s))
     else:
-        return(render_template("index.html", results="DBS Share Price Prediction"))
+        return (render_template("index.html", result="No Input"))
 
 
-if __name__=="__main__":
+# In[ ]:
+
+
+if __name__ == "__main__":
     app.run()
-    
+
+
+# In[ ]:
+
+
+# In[ ]:
